@@ -1,6 +1,4 @@
 from setuptools import setup
-import os                  
-from glob import glob
 
 package_name = 'mypkg'
 
@@ -12,19 +10,18 @@ setup(
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
-        (os.path.join('share', package_name, 'launch'), glob('launch/*.launch.py'))
     ],
     install_requires=['setuptools'],
     zip_safe=True,
     maintainer='tsuka28',
     maintainer_email='s23c1004ac@s.chibakoudai.jp',
-    description='a package for practice',
+    description='an assignment2 of robosys',
     license='BSD-3-Clause',
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'talker = mypkg.talker:main', #talker.pyのmain関数という意味
-            'listener = mypkg.listener:main', #←書いておいて後でコメントアウト
+            'talker = mypkg.talker_seireki:main', 
+            'listener = mypkg.listener_wareki:main',
         ],
     },
 )
