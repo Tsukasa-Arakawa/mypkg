@@ -1,6 +1,5 @@
 README.md
 package.xml
-setup.cfg
 setup.py
 build/mypkg/mypkg.egg-info/PKG-INFO
 build/mypkg/mypkg.egg-info/SOURCES.txt
