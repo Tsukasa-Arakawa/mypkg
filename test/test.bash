@@ -22,11 +22,12 @@ ros2 run mypkg listener >> $LOG_FILE &
 LISTENER_PID=$!
 
 echo "==== Log Analysis ===="
-for year in $(seq $START_YEAR $END_YEAR); do
-    while ! grep -q "Listen: $year" $LOG_FILE; do
-        sleep 1
-    done
-    echo "Year $year successfully received."
+while true; do
+    if grep -q "2035年に到達しました。終了します。" $LOG_FILE; then
+        echo "Termination message detected. Ending test."
+        break
+    fi
+    sleep 1
 done
 
 echo "Stopping ROS2 nodes..."
