@@ -36,7 +36,7 @@
 (中略)
 [INFO] [1735490286.342896922] [talker]: 西暦: 2034
 [INFO] [1735490286.842992805] [talker]: 西暦: 2035
-[INFO] [1735490287.342983322] [talker]: 2035年に到達しました。終了します。
+[INFO] [1735490287.342983322] [talker]: Reached the year 2035. Terminating.
 ```
 
 ### サブスクライバーを持つノード
@@ -48,7 +48,7 @@
 talker で送信されたものを受信する。talker の送信が停止すると停止する。
 - 実行例
 ```
-[INFO] [1735490196.922082353] [listener]: 受信待機中...
+[INFO] [1735490196.922082353] [listener]: Waiting for reception...
 [INFO] [1735490201.842870617] [listener]: 西暦: 1865, 和暦: 西暦1865年（和暦対応外）
 [INFO] [1735490202.344561617] [listener]: 西暦: 1866, 和暦: 西暦1866年（和暦対応外）
 [INFO] [1735490202.844105975] [listener]: 西暦: 1867, 和暦: 西暦1867年（和暦対応外）
@@ -57,12 +57,32 @@ talker で送信されたものを受信する。talker の送信が停止する
 (中略)
 [INFO] [1735490286.343811888] [listener]: 西暦: 2034, 和暦: 令和16年
 [INFO] [1735490286.843878382] [listener]: 西暦: 2035, 和暦: 令和17年
-[INFO] [1735490286.844704344] [listener]: 表示出来るのは2035年までです。終了します。
+[INFO] [1735490286.844704344] [listener]: It can be displayed until 2035. Exit.
 ```
 ### その他
-明治以前は和暦対応外と処理しています。
-年号が切り替わった年は切り替わる前後を表示しています。
-抜け出す時はCtrl+cを使用してください。
+- 明治以前は和暦対応外と処理しています。
+- 年号が切り替わった年は切り替わる前後を表示しています。
+
+
+## テスト内容
+- 対応ファイル
+```Calendar_test.bash```
+- 内容
+1865年から1900年までの表示テストをする。
+- 実行結果
+```
+Starting >>> mypkg
+(中略)
+Talker sent: 1865, Listener response: [INFO] [1735663552.699130451] [listener]: 西暦: 1865, 和暦: 西暦1865年（和暦対応外）
+Talker sent: 1866, Listener response: [INFO] [1735663552.949108418] [listener]: 西暦: 1866, 和暦: 西暦1866年（和暦対応外）
+(中略)
+Talker sent: 1898, Listener response: [INFO] [1735663560.949113851] [listener]: 西暦: 1898, 和暦: 明治31年
+Talker sent: 1899, Listener response: [INFO] [1735663561.199530022] [listener]: 西暦: 1899, 和暦: 明治32年
+Talker sent: 1900, Listener response: [INFO] [1735663561.448884503] [listener]: 西暦: 1900, 和暦: 明治33年
+Reached END_YEAR 1900. Stopping test.
+Stopping nodes...
+Test completed.
+```
 
 
 ## テスト済み環境

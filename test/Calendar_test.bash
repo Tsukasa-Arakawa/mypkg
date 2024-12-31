@@ -1,4 +1,6 @@
 #!/bin/bash
+# SPDX-FileCopyrightText: 2024 Tsukasa Arakawa <s23c1004ac@s.chibakoudai.jp>
+# SPDX-License-Identifier: BSD-3-Clause
 
 export ROS_LOG_DIR=/tmp/ros_logs
 mkdir -p $ROS_LOG_DIR
@@ -36,7 +38,6 @@ echo "Listener PID: $LISTENER_PID"
 YEAR=$START_YEAR
 while kill -0 $TALKER_PID 2>/dev/null && kill -0 $LISTENER_PID 2>/dev/null; do
     sleep 1
-    # listener.log から和暦メッセージを取得
     if grep -q "西暦: $YEAR" listener.log; then
         WAREKI_MSG=$(grep "西暦: $YEAR" listener.log | tail -n 1)
         echo "Talker sent: $YEAR, Listener response: $WAREKI_MSG"
