@@ -27,7 +27,7 @@ while true; do
         echo "Termination message detected. Ending test."
         break
     fi
-    sleep 1
+    sleep 2
 done
 
 echo "Stopping ROS2 nodes..."
