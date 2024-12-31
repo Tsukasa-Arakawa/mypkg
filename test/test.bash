@@ -16,11 +16,15 @@ END_YEAR=2005
 LOG_FILE=/tmp/mypkg.log
 
 echo "Starting test for years $START_YEAR to $END_YEAR..."
-ros2 run mypkg talker >> $LOG_FILE & 
+timeout 10 ros2 run mypkg talker > $LOG_FILE & 
 TALKER_PID=$!
-ros2 run mypkg listener >> $LOG_FILE &
+timeout 10 ros2 run mypkg listener > $LOG_FILE &
 LISTENER_PID=$!
 
+cat /tmp/mypkg.log |
+grep 'Reached the year 2035. Terminating.'
+
+```
 echo "==== Log Analysis ===="
 while true; do
     if grep -q "Reached the year 2035. Terminating." $LOG_FILE; then
@@ -34,3 +38,4 @@ echo "Stopping ROS2 nodes..."
 kill $TALKER_PID $LISTENER_PID
 
 echo "Test completed for years $START_YEAR to $END_YEAR."
+```
