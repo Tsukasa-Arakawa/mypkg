@@ -14,7 +14,7 @@ class Talker(Node):
 
     def publish_year(self):
         if self.current_year > 2035:
-            self.get_logger().info("2035年に到達しました。終了します。")
+            self.get_logger().info("Reached the year 2035. Terminating.")
             self.timer.cancel()
             return
 

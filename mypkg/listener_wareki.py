@@ -9,7 +9,7 @@ class Listener(Node):
     def __init__(self):
         super().__init__('listener')
         self.subscription = self.create_subscription(Int16, 'year_topic', self.callback, 10)
-        self.get_logger().info("受信待機中...")
+        self.get_logger().info("Waiting for reception")
 
     def callback(self, msg):
         seireki = msg.data
@@ -17,7 +17,7 @@ class Listener(Node):
         self.get_logger().info(f'西暦: {seireki}, 和暦: {wareki}')
 
         if seireki == 2035:
-            self.get_logger().info("表示出来るのは2035年までです。終了します。")
+            self.get_logger().info("It can be displayed until 2035. Exit.")
             rclpy.shutdown()
 
     def convert_to_wareki(self, year):
