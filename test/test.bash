@@ -13,9 +13,10 @@ END_YEAR=2005
 LOG_FILE=/tmp/mypkg.log
 
 echo "Starting test for years $START_YEAR to $END_YEAR..."
-ros2 launch mypkg talk_listen.launch.py > $LOG_FILE &
-
-LAUNCH_PID=$!
+ros2 run mypkg talker > $LOG_FILE &
+TALKER_PID=$!
+ros2 run mypkg listener >> $LOG_FILE &
+LISTENER_PID=$!
 
 echo "==== Log Analysis ===="
 for year in $(seq $START_YEAR $END_YEAR); do
@@ -26,7 +27,7 @@ for year in $(seq $START_YEAR $END_YEAR); do
 done
 
 echo "Stopping ROS2 nodes..."
-kill $LAUNCH_PID
+kill $TALKER_PID $LISTENER_PID
 
 echo "Test completed for years $START_YEAR to $END_YEAR."
 
