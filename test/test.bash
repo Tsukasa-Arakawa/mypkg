@@ -23,7 +23,7 @@ LISTENER_PID=$!
 
 echo "==== Log Analysis ===="
 while true; do
-    if grep -q "Reached the year 2035. Terminating." $LOG_FILE; then
+    if tail -n 20 $LOG_FILE | grep -q "Reached the year 2035. Terminating."; then
         echo "Termination message detected. Ending test."
         break
     fi
