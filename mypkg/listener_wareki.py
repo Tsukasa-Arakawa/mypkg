@@ -14,6 +14,11 @@ class Listener(Node):
 
     def callback(self, msg):
         seireki = msg.data
+        if seireki == -1:
+            self.get_logger().info("Received termination message. Exiting.")
+            self.is_done = True
+            return
+
         wareki = self.convert_to_wareki(seireki)
         self.get_logger().info(f'西暦: {seireki}, 和暦: {wareki}')
 

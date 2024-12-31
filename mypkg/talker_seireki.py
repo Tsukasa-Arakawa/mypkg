@@ -16,8 +16,10 @@ class Talker(Node):
     def publish_year(self):
         if self.current_year > 2035:
             self.get_logger().info("Reached the year 2035. Terminating.")
+            msg = Int16()
+            msg.data = -1
+            self.publisher_.publish(msg)
             self.timer.cancel()
-            self.is_done = True
             return
 
         msg = Int16()
