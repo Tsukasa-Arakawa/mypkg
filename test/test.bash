@@ -1,5 +1,8 @@
 #!/bin/bash
 
+export ROS_LOG_DIR=/tmp/ros_logs
+mkdir -p $ROS_LOG_DIR
+
 dir=~
 [ "$1" != "" ] && dir="$1"
 
