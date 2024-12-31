@@ -23,7 +23,7 @@ LISTENER_PID=$!
 
 echo "==== Log Analysis ===="
 while true; do
-    if tail -n 20 $LOG_FILE | grep -q "Reached the year 2035. Terminating."; then
+    if grep -q "Reached the year 2035. Terminating." $LOG_FILE; then
         echo "Termination message detected. Ending test."
         break
     fi
@@ -34,4 +34,3 @@ echo "Stopping ROS2 nodes..."
 kill $TALKER_PID $LISTENER_PID
 
 echo "Test completed for years $START_YEAR to $END_YEAR."
-

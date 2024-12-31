@@ -9,13 +9,15 @@ class Talker(Node):
     def __init__(self):
         super().__init__('talker')
         self.publisher_ = self.create_publisher(Int16, 'year_topic', 10)
-        self.timer = self.create_timer(0.5, self.publish_year)
+        self.timer = self.create_timer(0.25, self.publish_year)
         self.current_year = 1865
+        self.is_done = False
 
     def publish_year(self):
         if self.current_year > 2035:
             self.get_logger().info("Reached the year 2035. Terminating.")
             self.timer.cancel()
+            self.is_done = True
             return
 
         msg = Int16()
@@ -28,7 +30,8 @@ def main(args=None):
     rclpy.init(args=args)
     node = Talker()
     try:
-        rclpy.spin(node)
+        while not node.is_done:
+            rclpy.spin_once(node)
     except KeyboardInterrupt:
         pass
     finally:

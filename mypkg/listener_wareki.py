@@ -10,6 +10,7 @@ class Listener(Node):
         super().__init__('listener')
         self.subscription = self.create_subscription(Int16, 'year_topic', self.callback, 10)
         self.get_logger().info("Waiting for reception")
+        self.is_done = False
 
     def callback(self, msg):
         seireki = msg.data
@@ -18,7 +19,7 @@ class Listener(Node):
 
         if seireki == 2035:
             self.get_logger().info("It can be displayed until 2035. Exit.")
-            rclpy.shutdown()
+            self.is_done = True
 
     def convert_to_wareki(self, year):
         if year == 2019:
@@ -48,7 +49,8 @@ def main(args=None):
     rclpy.init(args=args)
     node = Listener()
     try:
-        rclpy.spin(node)
+        while not node.is_done:
+            rclpy.spin_once(node)
     except KeyboardInterrupt:
         pass
     finally:
