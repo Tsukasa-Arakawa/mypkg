@@ -33,25 +33,26 @@ fi
 echo "Talker PID: $TALKER_PID"
 echo "Listener PID: $LISTENER_PID"
 
-# リアルタイムでログを表示
-echo "Monitoring logs..."
-tail -f talker.log listener.log &
-TAIL_PID=$!
-
 YEAR=$START_YEAR
-while kill -0 $TALKER_PID 2> /dev/null && kill -0 $LISTENER_PID 2> /dev/null; do
-    if grep -q "Received termination message. Exiting." listener.log; then
-        echo "Termination message detected. Ending test."
-        break
-    fi
+while kill -0 $TALKER_PID 2>/dev/null && kill -0 $LISTENER_PID 2>/dev/null; do
     sleep 1
+    # listener.log から和暦メッセージを取得
+    if grep -q "西暦: $YEAR" listener.log; then
+        WAREKI_MSG=$(grep "西暦: $YEAR" listener.log | tail -n 1)
+        echo "Talker sent: $YEAR, Listener response: $WAREKI_MSG"
+        YEAR=$((YEAR + 1))
+        if [ $YEAR -gt $END_YEAR ]; then
+            echo "Reached END_YEAR $END_YEAR. Stopping test."
+            break
+        fi
+    else
+        echo "Waiting for listener to receive year: $YEAR..."
+    fi
 done
-
 
 echo "Stopping nodes..."
 kill $TALKER_PID 2>/dev/null
 kill $LISTENER_PID 2>/dev/null
-kill $TAIL_PID 2>/dev/null
 
 echo "Test completed."
 
