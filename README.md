@@ -1,6 +1,6 @@
 # robosys2024 Assignment2 "Calendar"
 
-ROS2 を使用した西暦を和暦に返還するパッケージ
+ROS2 を使用した西暦を和暦に返還するパッケージ  
 ![GitHub Actions](https://github.com/Tsukasa-Arakawa/mypkg/actions/workflows/test.yml/badge.svg)
 
 ## 使用方法
