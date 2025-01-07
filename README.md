@@ -1,18 +1,18 @@
 # robosys2024 Assignment2 "Calendar"
 
-ROS2 を使用した西暦を和暦に返還するノード
-
+ROS2 を使用した西暦を和暦に返還するパッケージ
+![GitHub Actions](https://github.com/Tsukasa-Arakawa/mypkg/actions/workflows/test.yml/badge.svg)
 
 ## 使用方法
 
 以下の手順に従ってください。
 
 - リポジトリをクローン
-```git clone https://github.com/Tsukasa-Arakawa/mypkg```
+`git clone https://github.com/Tsukasa-Arakawa/mypkg`
 - ディレクトリの移動
-```cd mypkg```
+`cd mypkg`
 - 端末１で talker_seireki を起動
-```ros2 run mypkg talker_seireki```
+`ros2 run mypkg talker_seireki`
 
 
 ## ノードについて
@@ -21,18 +21,18 @@ ROS2 を使用した西暦を和暦に返還するノード
 - 名前
 **talker_seireki**
 - 対応ファイル
-```talker_seireki.py```
+`talker_seireki.py`
 - 内容
 1865年～2035年までの西暦を0.25秒間隔で送信する。2035年まで送りきると送信を停止する。
 - トピック名 ：**year_topic**
-- メッセージ型 ：**Int16** (ROS 2の標準メッセージパッケージ ```std_msgs.msg.Int16```)
+- メッセージ型 ：**Int16** (ROS 2の標準メッセージパッケージ `std_msgs.msg.Int16`)
 
 
 ### サブスクライバーをもつノード(テスト用)
 - 名前
 **listener_wareki**
 - 対応ファイル
-```listener_wareki.py```
+`listener_wareki.py`
 - 内容
 受け取った年数に応じて和暦を返す。
 
@@ -40,7 +40,7 @@ ROS2 を使用した西暦を和暦に返還するノード
 
 ## テスト内容
 - 対応ファイル
-```Calendar_test.bash```
+`Calendar_test.bash`
 - 内容
 1865年から1900年までの表示テストをする。
 - 実行結果
@@ -60,9 +60,9 @@ Test completed.
 
 
 ## テスト済み環境
-- 実行環境：GitHub が提供する最新の Ubuntu ベースの仮想環境
+- 実行環境：Ubuntu 20.04 
 - Python version：3.10
-
+- ROS2 : Humble
 
 ## ライセンス
 - このソフトウェアパッケージは，3条項BSDライセンスの下，再頒布および使用が許可されます．  

@@ -11,20 +11,21 @@ dir=~
 cd $dir/ros2_ws
 colcon build
 source $dir/.bashrc
+echo $ROS_DISTRO
 
 START_YEAR=1865
 END_YEAR=1900
 
 echo "Starting test for years $START_YEAR to $END_YEAR..."
 
-ros2 run mypkg talker > talker.log 2>&1 &
+ros2 run mypkg talker_seireki > talker.log 2>&1 &
 TALKER_PID=$!
 if ! kill -0 $TALKER_PID 2>/dev/null; then
     echo "Failed to start talker node."
     exit 1
 fi
 
-ros2 run mypkg listener > listener.log 2>&1 &
+ros2 run mypkg listener_wareki > listener.log 2>&1 &
 LISTENER_PID=$!
 if ! kill -0 $LISTENER_PID 2>/dev/null; then
     echo "Failed to start listener node."
