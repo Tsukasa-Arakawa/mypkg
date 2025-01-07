@@ -1,6 +1,6 @@
 # robosys2024 Assignment2 "Calendar"
 
-西暦を和暦に返還するノード
+ROS2 を使用した西暦を和暦に返還するノード
 
 
 ## 使用方法
@@ -11,17 +11,15 @@
 ```git clone https://github.com/Tsukasa-Arakawa/mypkg```
 - ディレクトリの移動
 ```cd mypkg```
-- 端末１でtalker を起動
-```ros2 run mypkg talker```
-- 端末２でlistener を起動
-```ros2 run mypkg listener```
+- 端末１で talker_seireki を起動
+```ros2 run mypkg talker_seireki```
 
 
 ## ノードについて
 
 ### パブリッシャーを持つノード
 - 名前
-**talker**
+**talker_seireki**
 - 対応ファイル
 ```talker_seireki.py```
 - 内容
@@ -39,29 +37,11 @@
 [INFO] [1735490287.342983322] [talker]: Reached the year 2035. Terminating.
 ```
 
-### サブスクライバーを持つノード
-- 名前
-***listener***
+###サブスクライバーをもつノード(テスト用)
 - 対応ファイル
 ```listener_wareki.py```
 - 内容
-talker で送信されたものを受信する。talker の送信が停止すると停止する。
-- 実行例
-```
-[INFO] [1735490196.922082353] [listener]: Waiting for reception...
-[INFO] [1735490201.842870617] [listener]: 西暦: 1865, 和暦: 西暦1865年（和暦対応外）
-[INFO] [1735490202.344561617] [listener]: 西暦: 1866, 和暦: 西暦1866年（和暦対応外）
-[INFO] [1735490202.844105975] [listener]: 西暦: 1867, 和暦: 西暦1867年（和暦対応外）
-[INFO] [1735490203.342941480] [listener]: 西暦: 1868, 和暦: 慶応4年（1月1日～10月22日） / 明治元年（10月23日以降）
-[INFO] [1735490203.844133404] [listener]: 西暦: 1869, 和暦: 明治2年
-(中略)
-[INFO] [1735490286.343811888] [listener]: 西暦: 2034, 和暦: 令和16年
-[INFO] [1735490286.843878382] [listener]: 西暦: 2035, 和暦: 令和17年
-[INFO] [1735490286.844704344] [listener]: It can be displayed until 2035. Exit.
-```
-### その他
-- 明治以前は和暦対応外と処理しています。
-- 年号が切り替わった年は切り替わる前後を表示しています。
+受け取った年数に応じて和暦を返す。
 
 
 ## テスト内容
@@ -87,7 +67,7 @@ Test completed.
 
 ## テスト済み環境
 - 実行環境：GitHub が提供する最新の Ubuntu ベースの仮想環境
-- Python version：3.7~3.12
+- Python version：3.10
 
 
 ## ライセンス

@@ -23,8 +23,8 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'talker = mypkg.talker_seireki:main', 
-            'listener = mypkg.listener_wareki:main',
+            'talker_seireki = mypkg.talker_seireki:main', 
+            'listener_wareki = mypkg.listener_wareki:main',
         ],
     },
 )
