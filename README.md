@@ -30,7 +30,7 @@ ROS2 を使用した西暦を和暦に返還するノード
 
 ### サブスクライバーをもつノード(テスト用)
 - 名前
-**listener_wareki
+**listener_wareki**
 - 対応ファイル
 ```listener_wareki.py```
 - 内容
