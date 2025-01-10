@@ -11,7 +11,7 @@ ROS2 を使用した西暦を和暦に返還するパッケージ
 `git clone https://github.com/Tsukasa-Arakawa/mypkg`
 - ディレクトリの移動
 `cd mypkg`
-- 端末１で talker_seireki を起動
+- 端末1で talker_seireki を起動
 `ros2 run mypkg talker_seireki`
 
 
