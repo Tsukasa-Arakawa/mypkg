@@ -8,9 +8,9 @@ mkdir -p $ROS_LOG_DIR
 dir=~
 [ "$1" != "" ] && dir="$1"
 
-cd $dir/ros2_ws
-colcon build
-source $dir/.bashrc
+cd $dir/ros2_ws || { echo "Failed to change directory to $dir/ros2_ws"; exit 1; }
+colcon build || { echo "Failed to build the workspace"; exit 1; }
+source $dir/.bashrc || { echo "Failed to source $dir/.bashrc"; exit 1; }
 echo $ROS_DISTRO
 
 START_YEAR=1865
@@ -57,4 +57,4 @@ kill $TALKER_PID 2>/dev/null
 kill $LISTENER_PID 2>/dev/null
 
 echo "Test completed."
-
+exit 0
