@@ -3,18 +3,6 @@
 ROS2 を使用した西暦を和暦に返還するパッケージ  
 ![GitHub Actions](https://github.com/Tsukasa-Arakawa/mypkg/actions/workflows/test.yml/badge.svg)
 
-## 使用方法
-
-以下の手順に従ってください。
-
-- リポジトリをクローン
-`git clone https://github.com/Tsukasa-Arakawa/mypkg`
-- ディレクトリの移動
-`cd mypkg`
-- 端末1で talker_seireki を起動
-`ros2 run mypkg talker_seireki`
-
-
 ## ノードについて
 
 ### パブリッシャーを持つノード
@@ -62,7 +50,7 @@ Test completed.
 ## テスト済み環境
 - 実行環境：Ubuntu 20.04 
 - Python version：3.10
-- ROS2 : Humble
+- ROS2 : Foxy
 
 ## ライセンス
 - このソフトウェアパッケージは，3条項BSDライセンスの下，再頒布および使用が許可されます．  
